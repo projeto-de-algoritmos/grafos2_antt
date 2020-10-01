@@ -1,61 +1,283 @@
-import React, { useState, useEffect } from 'react';
+// import graph from './assets/graph.json';
+const graph = {
+	empresas_habilitadas_regular: [
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "CALDAS NOVAS",
+			"uf_destino": "GO",
+			"extensao_secao": "318.10",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "VIANOPOLIS",
+			"uf_destino": "GO",
+			"extensao_secao": "158.50",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "VIANOPOLIS",
+			"uf_destino": "GO",
+			"extensao_secao": "168.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "ORIZONA",
+			"uf_destino": "GO",
+			"extensao_secao": "210.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "243.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "248.51",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "08/07/2016",
+			"prefixo": "12-0140-00",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "254.87",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "CALDAS NOVAS",
+			"uf_destino": "GO",
+			"extensao_secao": "318.10",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "VIANOPOLIS",
+			"uf_destino": "GO",
+			"extensao_secao": "158.50",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "VIANOPOLIS",
+			"uf_destino": "GO",
+			"extensao_secao": "168.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "ORIZONA",
+			"uf_destino": "GO",
+			"extensao_secao": "210.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "243.60",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "248.51",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "06/11/2018",
+			"prefixo": "12-0140-61",
+			"descricao_linha": "BRASILIA(DF) - CALDAS NOVAS(GO)",
+			"municipio_origem": "BRASILIA",
+			"uf_origem": "DF",
+			"municipio_destino": "PIRES DO RIO",
+			"uf_destino": "GO",
+			"extensao_secao": "254.87",
+			"outorga_secao": "AUTORIZAÇÃO "
+		},
+		{
+			"cnpj": "04.192.453/0001-18",
+			"razao_social": "ALFA LUZ VIACAO TRANSPORTE LTDA",
+			"numero_tar": "145",
+			"numero_lop": "17",
+			"data_autorizacao": "15/05/2017",
+			"prefixo": "12-0274-00",
+			"descricao_linha": "CALDAS NOVAS(GO) - ARAGUARI(MG)",
+			"municipio_origem": "CALDAS NOVAS",
+			"uf_origem": "GO",
+			"municipio_destino": "ARAGUARI",
+			"uf_destino": "MG",
+			"extensao_secao": "139.80",
+			"outorga_secao": "AUTORIZAÇÃO "
+		}
+	]
+};
 
-import lines from './assets/linhas.json';
+export default class Graph {
+	edges = {};
+	nodes = [];
 
-function Graph(){
-    let objLine = {};
-    const [edges, setEdges] = useState({});
-    const [nodes, setNodes] = useState([]);
-    
-    function addNode(node) {
-        let stateNodes = nodes;
-        stateNodes.push(node)
-        setNodes(stateNodes);
-        setEdges({node: []});
-    }
+	constructor() {
+		graph.empresas_habilitadas_regular.forEach((linha) => {
+			if (this.nodes.findIndex(node => node.municipio_origem === linha.municipio_origem) === -1) {
+				this.addNode(linha);
+			}
+		});
+		this.nodes.forEach((node) => {
+			const destinos = graph.empresas_habilitadas_regular.filter((linha) => linha.municipio_origem === node.municipio_destino);
+			destinos.forEach((destino) => {
+				this.addDirectedEdge(node, destino);
+			});
+		});
 
-    // const addEdge = (node1, node2, weight = 1) => {
-    //     this.edges[node1].push({ node: node2, weight: weight });
-    //     this.edges[node2].push({ node: node1, weight: weight });
-    // }
+		this.display();
+	}
 
-    const display = () => {
-        let graph = "";
-        console.log({nodes})
-        nodes.forEach(node => {
-           graph += node + "->" + edges[node].map(n => n.node).join(", ") + "\n";
-        });
-        console.log(graph);
-    }
+	addNode(node) {
+		this.nodes.push(node);
+		this.edges[node] = [];
+	}
 
-    const readJSON = () => {
-        for(var line in lines.empresas_habilitadas_regular) {
-            objLine = {
-                "prefixo": lines.empresas_habilitadas_regular[line].prefixo,
-                "descricao_linha": lines.empresas_habilitadas_regular[line].descricao_linha,
-                "municipio_origem": lines.empresas_habilitadas_regular[line].municipio_origem,
-                "uf_origem": lines.empresas_habilitadas_regular[line].uf_origem,
-                "municipio_destino": lines.empresas_habilitadas_regular[line].municipio_destino,
-                "uf_destino": lines.empresas_habilitadas_regular[line].uf_destino,
-                "extensao_secao": lines.empresas_habilitadas_regular[line].extensao_secao
-            }
-            addNode(objLine);
-            // addEdge(objLine,objLine, objLine.extensao_secao);
-         }
+	addEdge(node1, node2, weight = 1) {
+		this.edges[node1].push({ node: node2, weight: weight });
+		this.edges[node2].push({ node: node1, weight: weight });
+	}
 
-        display();
+	addDirectedEdge(node1, node2, weight = 1) {
+		console.log(node1, node2);
+		this.edges[node1].push({ node: node2, weight: weight });
+	}
 
-    }
+	// addEdge(node1, node2) {
+	//   this.edges[node1].push(node2);
+	//   this.edges[node2].push(node1);
+	// }
 
-    useEffect(() => {
-        readJSON();
-    }, [])
+	// addDirectedEdge(node1, node2) {
+	//   this.edges[node1].push(node2);
+	// }
 
-    return (
-        <div>
-            pai tá on
-        </div>
-    )
+	display() {
+		let graph = "";
+		this.nodes.forEach(node => {
+			graph += node.municipio_origem + "->" + this.edges[node].map(n => n.node.municipio_destino).join(", ") + "\n";
+		});
+		console.log(graph);
+	}
 }
-
-export default Graph;
