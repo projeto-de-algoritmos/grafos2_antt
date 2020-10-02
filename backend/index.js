@@ -11,10 +11,11 @@ app.use(bodyParser.json())
 app.use(cors());
 
 let graph;
+let linhas;
 
 app.get('/', async(_, res) => {
   fs.readFile('data.json', (_, data) => {
-    const linhas = JSON.parse(data);
+    linhas = JSON.parse(data);
   
     graph = new Graph();
     linhas.forEach(({ municipio_origem }) => {
@@ -31,7 +32,12 @@ app.get('/', async(_, res) => {
 
 app.post('/rotas', function (req, res) {
   const data = req.body;
-  res.send(graph.djikstraAlgorithm(data.municipio_origem, data.municipio_destino));
+  const { distancia, path } = graph.djikstraAlgorithm(data.municipio_origem, data.municipio_destino);
+  const estados = path.map((cidade) => {
+    const l = linhas.find(linha => linha.municipio_origem === cidade);
+    return l.uf_origem;
+  });
+  res.send({ distancia, path, estados });
 });
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
