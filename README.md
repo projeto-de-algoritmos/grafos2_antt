@@ -1,45 +1,35 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# ANTT
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 2<br>
+**Conteúdo da Disciplina**: Grafos 2<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 16/0007763  |  Guilherme Siqueira Brandão |
+| 16/0026822  |  Djorkaeff Alexandre Vilela Pereira |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O projeto usa um dataset provido pela ANTT sobre as rotas de ônibus entre os municípios brasileiros e usa o algoritmo de Djikstra para encontrar o menor caminho entre dois municípios que se queira consultar.
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: Javascript<br>
+**Framework**: Node/React<br>
+
+Para rodar o projeto você precisará rodar os seguintes comandos:
+```
+git clone git@github.com:projeto-de-algoritmos/grafos2_antt.git
+```
+Em abas separadas do terminal você deverá rodar:
+```
+cd grafos2_antt/frontend; yarn; yarn start
+cd grafos2_antt/backend; yarn; node index.js
+```
+O servidor poderá ser acessado em `http://localhost:5000` enquanto o frontend será acessado em `http://localhost:3000`
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
-
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
+Você deverá entrar na url `http://localhost:3000` e selecionar uma cidade de origem e uma de destino e pressionar o botão "Enviar".
 
