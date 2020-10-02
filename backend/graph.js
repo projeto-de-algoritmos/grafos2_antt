@@ -15,7 +15,7 @@ class Graph {
     this.edges[node1].push({ node: node2, weight: weight });
   }
 
-  djikstraAlgorithm(startNode) {
+  djikstraAlgorithm(startNode, endNode) {
     let distances = {};
     let prev = {};
     let pq = new PriorityQueue(this.nodes.length * this.nodes.length);
@@ -39,7 +39,15 @@ class Graph {
         }
       });
     }
-    return distances;
+
+    const path = [endNode];
+    let p = prev[endNode];
+    while (p !== startNode) {
+      path.unshift(p);
+      p = prev[p];
+    }
+    path.unshift(startNode);
+    return { distancia: distances[endNode], path };
   }
 }
 

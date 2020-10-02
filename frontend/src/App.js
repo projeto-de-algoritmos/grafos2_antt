@@ -6,6 +6,7 @@ const App = () => {
   const [graph, setGraph] = useState();
   const [data, setData] = useState({});
   const [distance, setDistance] = useState();
+  const [path, setPath] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const App = () => {
     }).then(res => res.json());
     setLoading(false);
     setDistance(response.distancia);
+    setPath(response.path);
   }
 
   const changeOrigin = ({ target: { value: origem }}) => setData({ ...data, origem });
@@ -58,8 +60,11 @@ const App = () => {
         </select>
       </label>
       <input type="submit" value="Enviar" />
-      {loading ? (<ReactLoading type='spin' color='black' height={100} width={100} />) : distance && (
-        <h1>{`Distância: ${ distance }`}</h1>
+      {loading ? (<ReactLoading type='spin' color='black' height={100} width={100} />) : distance && path && (
+        <>
+          <h1>{path.join(', ')}</h1>
+          <h1>{`Distância: ${ distance } km`}</h1>
+        </>
       )}
     </form>
   );

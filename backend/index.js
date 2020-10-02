@@ -14,7 +14,6 @@ let graph;
 
 app.get('/', async(_, res) => {
   fs.readFile('data.json', (_, data) => {
-    // process data
     const linhas = JSON.parse(data);
   
     graph = new Graph();
@@ -26,15 +25,13 @@ app.get('/', async(_, res) => {
       graph.addEdge(linha.municipio_origem, linha.municipio_destino, linha.extensao_secao);
     });
 
-    res.send({nodes: graph.nodes, edges: graph.edges});  
+    res.send({nodes: graph.nodes.sort(), edges: graph.edges});  
   });
 });
 
 app.post('/rotas', function (req, res) {
   const data = req.body;
-  const distances = graph.djikstraAlgorithm(data.municipio_origem);
-  res.send({distancia: distances[data.municipio_destino]});
-
-})
+  res.send(graph.djikstraAlgorithm(data.municipio_origem, data.municipio_destino));
+});
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
