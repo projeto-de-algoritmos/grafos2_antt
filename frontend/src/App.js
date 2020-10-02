@@ -58,10 +58,9 @@ const App = () => {
         </select>
       </label>
       <input type="submit" value="Enviar" />
-      {distance && (
+      {loading ? (<ReactLoading type='spin' color='black' height={100} width={100} />) : distance && (
         <h1>{`Distância: ${ distance }`}</h1>
       )}
-      {loading && (<ReactLoading type='spin' color='black' height={100} width={100} />)}
     </form>
   );
 }
