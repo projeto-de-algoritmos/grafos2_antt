@@ -5,6 +5,8 @@ import './App.css';
 const App = () => {
   const [graph, setGraph] = useState();
   const [data, setData] = useState({});
+  const [distance, setDistance] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -13,12 +15,20 @@ const App = () => {
     })();
   }, []);
 
-  const submit = (event) => {
+  const submit = async(event) => {
+    event.preventDefault();
     if (!data.origem || !data.destino) {
       alert('Selecione uma origem e um destino!');
       return;
     }
-    event.preventDefault();
+    setLoading(true);
+    const response = await fetch('http://localhost:5000/rotas', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ municipio_origem: data.origem, municipio_destino: data.destino })
+    }).then(res => res.json());
+    setLoading(false);
+    setDistance(response.distancia);
   }
 
   const changeOrigin = ({ target: { value: origem }}) => setData({ ...data, origem });
@@ -29,7 +39,7 @@ const App = () => {
     return <ReactLoading type='spin' color='black' height={100} width={100} />;
   }
 
-  const options = graph.nodes.map((city) => <option value={city}>{city}</option>);
+  const options = graph.nodes.map((city) => <option value={city} key={city}>{city}</option>);
 
   return (
     <form onSubmit={submit}>
@@ -48,6 +58,10 @@ const App = () => {
         </select>
       </label>
       <input type="submit" value="Enviar" />
+      {distance && (
+        <h1>{`Distância: ${ distance }`}</h1>
+      )}
+      {loading && (<ReactLoading type='spin' color='black' height={100} width={100} />)}
     </form>
   );
 }
