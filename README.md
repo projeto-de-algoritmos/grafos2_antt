@@ -13,7 +13,12 @@
 O projeto usa um dataset provido pela ANTT sobre as rotas de ônibus entre os municípios brasileiros e usa o algoritmo de Djikstra para encontrar o menor caminho entre dois municípios que se queira consultar.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+![](https://i.imgur.com/hVIrWAb.png)
+
+![](https://i.imgur.com/dKEgSML.png)
+
+![](https://i.imgur.com/TLoHWBM.png)
 
 ## Instalação 
 **Linguagem**: Javascript<br>
