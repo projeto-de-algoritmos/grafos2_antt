@@ -77,34 +77,44 @@ const App = () => {
   const changeDestination = ({ target: { value: destino }}) => setData({ ...data, destino });
 
   if (!graph?.nodes?.length) {
-    return <ReactLoading type='spin' color='black' height={100} width={100} />;
+    return <ReactLoading type='spin' color='black' style={{height: 50, width: 50, margin: '0 auto', marginTop: 50}} />;
   }
 
   const options = graph.nodes.map((city) => <option value={city} key={city}>{city}</option>);
 
   return (
     <form onSubmit={submit}>
-      <label>
-        Origem:
-        <select value={data.origem} onChange={changeOrigin}>
-          <option />
-          {options}
-        </select>
-      </label>
-      <label>
-        Destino:
-        <select value={data.destino} onChange={changeDestination}>
-          <option />
-          {options}
-        </select>
-      </label>
-      <input type='submit' value='Enviar' />
-      {loading ? (<ReactLoading type='spin' color='black' height={100} width={100} />) : distance && path && (
-        <>
-          <h1>{path.join(', ')}</h1>
-          <h1>{`Distância: ${ distance } km`}</h1>
-        </>
-      )}
+        <header style={{textAlign: "center", marginTop: 30}}>
+          <h1>Qual ônibus eu pego?</h1>
+          <p className="tagline">Selecione aonde você está e aonde você quer ir que diremos quais ônibus pegar percorrendo a menor quantidade de quilômetros.</p>
+          <sub>Todos os trajetos são linhas de ônibus cadastradas na ANTT</sub>
+        </header>
+      <div style={{textAlign: "center", marginTop: 50}}>
+        <label>
+          Selecione o Local de Partida:
+          <select style={{marginLeft: 5}} value={data.origem} onChange={changeOrigin}>
+            <option />
+            {options}
+          </select>
+        </label>
+        <label style={{marginLeft: 10}}>
+          Selecione o Local Destino:
+          <select style={{marginLeft: 5}} value={data.destino} onChange={changeDestination}>
+            <option />
+            {options}
+          </select>
+        </label>
+        <br/><br/>
+        <input type='submit' value='Enviar' />
+          {loading ? (<ReactLoading type='spin' color='black' style={{height: 50, width: 50, margin: '0 auto'}} />) : distance && path && (
+            <>
+              <h2>Você deverá pegar ônibus passando por:</h2>
+              <h3>{path.join(', ')}</h3>
+              <h3>{`Distância total percorrida: ${ distance } km`}</h3>
+            </>
+          )}
+      </div>
+
       <ForceGraph2D
         graphData={{
           nodes: states,
