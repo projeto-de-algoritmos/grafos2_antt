@@ -32,11 +32,18 @@ app.get('/', async(_, res) => {
 
 app.post('/rotas', function (req, res) {
   const data = req.body;
-  const { distancia, path } = graph.djikstraAlgorithm(data.municipio_origem, data.municipio_destino);
+  let { distancia, path } = graph.djikstraAlgorithm(data.municipio_origem, data.municipio_destino);
   const estados = path.map((cidade) => {
     const l = linhas.find(linha => linha.municipio_origem === cidade);
     return l.uf_origem;
   });
+
+  const pathWithState = path.map((cidade) => {
+    const l = linhas.find(linha => linha.municipio_origem === cidade);
+    const municipioComUf = l.municipio_origem + '/' + l.uf_origem;
+    return municipioComUf;
+  });
+  path = pathWithState;
   res.send({ distancia, path, estados });
 });
 
